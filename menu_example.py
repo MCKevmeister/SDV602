@@ -68,6 +68,12 @@ def run_menu_one():
     return True
 
 
+def run_menu_two():
+    menu_two = ("Select a number.", (1, "different", test_cmd), (2, "menu", test_cmd), (3, "items", quit_cmd))
+    run_menu(menu_two)
+    return True
+
+
 def test_cmd(a_value):
     print(f"A dummy command {a_value}")
     return True  # continue
@@ -80,6 +86,6 @@ def quit_cmd():
 
 if __name__ == "__main__":
     # testing code for now
-    menu_tuple = ("Select a number.", (1, "Menu One", run_menu_one), (2, "Menu Two", test_cmd),
+    menu_tuple = ("Select a number.", (1, "Menu One", run_menu_one), (2, "Menu Two", run_menu_two),
                   (3, "Menu Three", test_cmd), (4, "Quit", quit_cmd))
     run_menu(menu_tuple)
