@@ -1,2 +1,3 @@
-# SDV602_week3
- 
+# SDV602 Week 3
+
+![Exercise Instructions](exercise-instructions.png)
