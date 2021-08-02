@@ -1,6 +1,5 @@
 """
 Menu examples
-
 """
 
 
@@ -57,40 +56,30 @@ def get_integer_input():
             test = input("Enter a number:")
             result = int(test)
             break
-        except Exception:
+        except ValueError:
             print(f'Oops! {test} was not a number')
 
     return result
 
 
-def run_menu_one(a_value):
-    menu_one = ( \
-        "Select a number.", \
-        (1, "Menu Burger", test_cmd), \
-        (2, "Menu Chips", test_cmd), \
-        (3, "Quit", quit_cmd) \
-        )
+def run_menu_one():
+    menu_one = ("Select a number.", (1, "Menu Burger", test_cmd), (2, "Menu Chips", test_cmd), (3, "Quit", quit_cmd))
     run_menu(menu_one)
     return True
 
 
 def test_cmd(a_value):
-    print("A dummy command {}".format(a_value))
+    print(f"A dummy command {a_value}")
     return True  # continue
 
 
-def quit_cmd(a_value):
+def quit_cmd():
     print('Thank you, good-bye!')
     return False  # stop
 
 
 if __name__ == "__main__":
     # testing code for now
-    menu_tuple = ( \
-        "Select a number.", \
-        (1, "Menu One", run_menu_one), \
-        (2, "Menu Two", test_cmd), \
-        (3, "Menu Three", test_cmd), \
-        (4, "Quit", quit_cmd) \
-        )
+    menu_tuple = ("Select a number.", (1, "Menu One", run_menu_one), (2, "Menu Two", test_cmd),
+                  (3, "Menu Three", test_cmd), (4, "Quit", quit_cmd))
     run_menu(menu_tuple)
