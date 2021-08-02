@@ -76,7 +76,7 @@ def run_menu_one(a_value):
 
 def test_cmd(a_value):
     print("A dummy command {}".format(a_value))
-    return True  # contine
+    return True  # continue
 
 
 def quit_cmd(a_value):
