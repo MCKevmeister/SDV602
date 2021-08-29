@@ -5,7 +5,7 @@ Basic steps are:
  * Create a Canvas Element
  * Layout form
  * Display form (NON BLOCKING)
- * Draw plots onto convas
+ * Draw plots onto canvas
  * Display form (BLOCKING)
  
 Each plotting function, complete with imports, was copied directly from Matplot examples page 
@@ -19,6 +19,7 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 matplotlib.use('TkAgg')
+
 
 def PyplotSimple():
     import numpy as np

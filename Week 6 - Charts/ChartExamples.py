@@ -33,7 +33,7 @@ def line_plot(**kwargs):
     """
     plt.plot([-1, -4.5, 16, 23])
 
-    # plt.show()
+    plt.show()
     return plt.gcf()
 
 
@@ -69,7 +69,9 @@ def names_labels(**kwargs):
     days = range(1, 9)
     celsius_values = [25.6, 24.1, 26.7, 28.3, 27.5, 30.5, 32.8, 33.1]
 
-    fig, ax = plt.subplots()  # Challenge - Why "fig" here"
+    # fig,
+
+    ax = plt.subplots()  # Challenge - Why "fig" here"
 
     ax.plot(days, celsius_values)
     ax.set(xlabel='Day',
@@ -245,7 +247,7 @@ def pie_chart2(**kwargs):
     return plt.gcf()
 
 
-def show_figFunc(pFigureFunction, **kwargs):
+def show_figFunc(figure_function, **kwargs):
     """
     Shows a figure
 
@@ -253,12 +255,12 @@ def show_figFunc(pFigureFunction, **kwargs):
         pFigureFunction (a function that returns a matplotlib figure)\n
         **kwargs needs to match kwargs of the function
     """
-    current_fig = fig_with_kwargs(pFigureFunction, **kwargs)
+    current_fig = fig_with_kwargs(figure_function, **kwargs)
     plt.figure(current_fig.number)
     plt.show()
 
 
-def fig_with_kwargs(pFigureFunction, **kwargs):
+def fig_with_kwargs(figure_function, **kwargs):
     """
     Returns a figure after appying the kwargs
 
@@ -266,11 +268,10 @@ def fig_with_kwargs(pFigureFunction, **kwargs):
         pFigureFunction (a function that returns a matplotlib figure) \n
         **kwargs needs to match kwargs of the function
     """
-    kwarg_fig = None
     if kwargs:
-        kwarg_fig = pFigureFunction(**kwargs)
+        kwarg_fig = figure_function(**kwargs)
     else:
-        kwarg_fig = pFigureFunction()
+        kwarg_fig = figure_function()
 
     return kwarg_fig
 
@@ -278,11 +279,8 @@ def fig_with_kwargs(pFigureFunction, **kwargs):
 if __name__ == "__main__":
     # Test scripts
     show_figFunc(line_plot)
-
     show_figFunc(discrete_plot)
-
     show_figFunc(names_labels)
-
     show_figFunc(multiple_plots)
     show_figFunc(bar_chart)
     show_figFunc(histogram, title="Our Name for Title")
