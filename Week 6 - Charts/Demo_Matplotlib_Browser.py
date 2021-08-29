@@ -1,4 +1,3 @@
-
 """
 Demonstrates one way of embedding Matplotlib figures into a PySimpleGUI window.
 
@@ -11,31 +10,29 @@ Basic steps are:
  
 Each plotting function, complete with imports, was copied directly from Matplot examples page 
 """
-#!/usr/bin/env python
+# !/usr/bin/env python
 import PySimpleGUI as sg
 import matplotlib
 import inspect
-matplotlib.use('TkAgg')
-
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-
-
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
+matplotlib.use('TkAgg')
 
 def PyplotSimple():
     import numpy as np
     import matplotlib.pyplot as plt
 
     # evenly sampled time .2 intervals
-    t = np.arange(0., 5., 0.2)          # go from 0 to 5 using .2 intervals
+    t = np.arange(0., 5., 0.2)  # go from 0 to 5 using .2 intervals
 
     # red dashes, blue squares and green triangles
     plt.plot(t, t, 'r--', t, t ** 2, 'bs', t, t ** 3, 'g^')
 
     fig = plt.gcf()  # get the figure to show
     return fig
+
 
 def PyplotHistogram():
     """
@@ -86,6 +83,7 @@ def PyplotHistogram():
     fig.tight_layout()
     return fig
 
+
 def PyplotArtistBoxPlots():
     """
     =========================================
@@ -115,7 +113,7 @@ def PyplotArtistBoxPlots():
     fs = 10  # fontsize
 
     # demonstrate how to toggle the display of different elements:
-    fig, axes = plt.subplots(nrows=2, ncols=3, figsize=(6, 6), sharey=True)
+    fig, axes = plt.subplots(nrows=2, ncols=3, figsize=(6, 6), sharey="True")
     axes[0, 0].boxplot(data, labels=labels)
     axes[0, 0].set_title('Default', fontsize=fs)
 
@@ -142,8 +140,8 @@ def PyplotArtistBoxPlots():
     fig.subplots_adjust(hspace=0.4)
     return fig
 
-def ArtistBoxplot2():
 
+def ArtistBoxplot2():
     # fake data
     np.random.seed(937)
     data = np.random.lognormal(size=(37, 4), mean=1.5, sigma=1.75)
@@ -188,6 +186,7 @@ def ArtistBoxplot2():
     fig.subplots_adjust(hspace=0.4)
     return fig
 
+
 def PyplotScatterWithLegend():
     import matplotlib.pyplot as plt
     from numpy.random import rand
@@ -203,6 +202,7 @@ def PyplotScatterWithLegend():
     ax.legend()
     ax.grid(True)
     return fig
+
 
 def PyplotLineStyles():
     """
@@ -256,6 +256,7 @@ def PyplotLineStyles():
 
     plt.tight_layout()
     return plt.gcf()
+
 
 def PyplotLinePolyCollection():
     import matplotlib.pyplot as plt
@@ -360,6 +361,7 @@ def PyplotLinePolyCollection():
     ax4.set_ylim(ax4.get_ylim()[::-1])
     return fig
 
+
 def PyplotGGPlotSytleSheet():
     import numpy as np
     import matplotlib.pyplot as plt
@@ -401,8 +403,9 @@ def PyplotGGPlotSytleSheet():
         ax4.add_patch(plt.Circle(xy, radius=0.3, color=color['color']))
     ax4.axis('equal')
     ax4.margins(0)
-    fig = plt.gcf()             # get the figure to show
+    fig = plt.gcf()  # get the figure to show
     return fig
+
 
 def PyplotBoxPlot():
     import numpy as np
@@ -421,6 +424,7 @@ def PyplotBoxPlot():
     ax1.set_title('Basic Plot')
     ax1.boxplot(data)
     return fig1
+
 
 def PyplotRadarChart():
     import numpy as np
@@ -608,6 +612,7 @@ def PyplotRadarChart():
              size='large')
     return fig
 
+
 def DifferentScales():
     import numpy as np
     import matplotlib.pyplot as plt
@@ -635,6 +640,7 @@ def DifferentScales():
     fig.tight_layout()  # otherwise the right y-label is slightly clipped
     return fig
 
+
 def ExploringNormalizations():
     import matplotlib.pyplot as plt
     import matplotlib.colors as mcolors
@@ -661,10 +667,10 @@ def ExploringNormalizations():
     fig.tight_layout()
     return fig
 
-def PyplotFormatstr():
 
+def PyplotFormatstr():
     def f(t):
-        return np.exp(-t) * np.cos(2*np.pi*t)
+        return np.exp(-t) * np.cos(2 * np.pi * t)
 
     t1 = np.arange(0.0, 5.0, 0.1)
     t2 = np.arange(0.0, 5.0, 0.02)
@@ -674,9 +680,10 @@ def PyplotFormatstr():
     plt.plot(t1, f(t1), 'bo', t2, f(t2), 'k')
 
     plt.subplot(212)
-    plt.plot(t2, np.cos(2*np.pi*t2), 'r--')
-    fig = plt.gcf()             # get the figure to show
+    plt.plot(t2, np.cos(2 * np.pi * t2), 'r--')
+    fig = plt.gcf()  # get the figure to show
     return fig
+
 
 def UnicodeMinus():
     import numpy as np
@@ -691,6 +698,7 @@ def UnicodeMinus():
     ax.plot(10 * np.random.randn(100), 10 * np.random.randn(100), 'o')
     ax.set_title('Using hyphen instead of Unicode minus')
     return fig
+
 
 def Subplot3d():
     from mpl_toolkits.mplot3d.axes3d import Axes3D
@@ -721,6 +729,7 @@ def Subplot3d():
     X, Y, Z = get_test_data(0.05)
     ax.plot_wireframe(X, Y, Z, rstride=10, cstride=10)
     return fig
+
 
 def PyplotScales():
     import numpy as np
@@ -822,7 +831,6 @@ def AxesGrid():
     return plt.gcf()
 
 
-
 #  The magic function that makes it possible.... glues together tkinter and pyplot using Canvas Widget
 def draw_figure(canvas, figure):
     figure_canvas_agg = FigureCanvasTkAgg(figure, canvas)
@@ -830,22 +838,24 @@ def draw_figure(canvas, figure):
     figure_canvas_agg.get_tk_widget().pack(side='top', fill='both', expand=1)
     return figure_canvas_agg
 
+
 def delete_figure_agg(figure_agg):
     figure_agg.get_tk_widget().forget()
     plt.close('all')
+
 
 # -------------------------------- GUI Starts Here -------------------------------#
 # fig = your figure you want to display.  Assumption is that 'fig' holds the      #
 #       information to display.                                                   #
 # --------------------------------------------------------------------------------#
 
-fig_dict = {'Pyplot Simple':PyplotSimple, 'Pyplot Formatstr':PyplotFormatstr,'PyPlot Three':Subplot3d,
-            'Unicode Minus': UnicodeMinus, 'Pyplot Scales' : PyplotScales, 'Axes Grid' : AxesGrid,
-            'Exploring Normalizations' : ExploringNormalizations, 'Different Scales' : DifferentScales,
-            'Pyplot Box Plot' : PyplotBoxPlot, 'Pyplot ggplot Style Sheet' : PyplotGGPlotSytleSheet,
-            'Pyplot Line Poly Collection' : PyplotLinePolyCollection, 'Pyplot Line Styles' : PyplotLineStyles,
-            'Pyplot Scatter With Legend' :PyplotScatterWithLegend, 'Artist Customized Box Plots' : PyplotArtistBoxPlots,
-            'Artist Customized Box Plots 2' : ArtistBoxplot2, 'Pyplot Histogram' : PyplotHistogram}
+fig_dict = {'Pyplot Simple': PyplotSimple, 'Pyplot Formatstr': PyplotFormatstr, 'PyPlot Three': Subplot3d,
+            'Unicode Minus': UnicodeMinus, 'Pyplot Scales': PyplotScales, 'Axes Grid': AxesGrid,
+            'Exploring Normalizations': ExploringNormalizations, 'Different Scales': DifferentScales,
+            'Pyplot Box Plot': PyplotBoxPlot, 'Pyplot ggplot Style Sheet': PyplotGGPlotSytleSheet,
+            'Pyplot Line Poly Collection': PyplotLinePolyCollection, 'Pyplot Line Styles': PyplotLineStyles,
+            'Pyplot Scatter With Legend': PyplotScatterWithLegend, 'Artist Customized Box Plots': PyplotArtistBoxPlots,
+            'Artist Customized Box Plots 2': ArtistBoxplot2, 'Pyplot Histogram': PyplotHistogram}
 
 sg.theme('LightGreen')
 
@@ -856,8 +866,8 @@ col_listbox = [[sg.Listbox(values=listbox_values, enable_events=True, size=(28, 
                [sg.Text(' ' * 12), sg.Exit(size=(5, 2))]]
 
 layout = [[sg.Text('Matplotlib Plot Test', font=('current 18'))],
-          [sg.Col(col_listbox, pad=(5, (3, 330))), sg.Canvas(size=(figure_w, figure_h), key='-CANVAS-') ,
-           sg.MLine(size=(70, 35), pad=(5, (3, 90)), key='-MULTILINE-')],]
+          [sg.Col(col_listbox, pad=(5, (3, 330))), sg.Canvas(size=(figure_w, figure_h), key='-CANVAS-'),
+           sg.MLine(size=(70, 35), pad=(5, (3, 90)), key='-MULTILINE-')], ]
 
 # create the form and show it without the plot
 window = sg.Window('Demo Application - Embedding Matplotlib In PySimpleGUI', layout, grab_anywhere=False, finalize=True)
@@ -866,14 +876,14 @@ figure_agg = None
 while True:
     event, values = window.read()
     # print(event, values)                  # helps greatly when debugging
-    if event in (sg.WIN_CLOSED, 'Exit'):             # if user closed window or clicked Exit button
+    if event in (sg.WIN_CLOSED, 'Exit'):  # if user closed window or clicked Exit button
         break
     if figure_agg:
         # ** IMPORTANT ** Clean up previous drawing before drawing again
         delete_figure_agg(figure_agg)
-    choice = values['-LISTBOX-'][0]                 # get first listbox item chosen (returned as a list)
-    func = fig_dict[choice]                         # get function to call from the dictionary
+    choice = values['-LISTBOX-'][0]  # get first listbox item chosen (returned as a list)
+    func = fig_dict[choice]  # get function to call from the dictionary
     window['-MULTILINE-'].update(inspect.getsource(func))  # show source code to function in multiline
-    fig = func()                                    # call function to get the figure
+    fig = func()  # call function to get the figure
     figure_agg = draw_figure(window['-CANVAS-'].TKCanvas, fig)  # draw the figure
 window.close()

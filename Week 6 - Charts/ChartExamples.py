@@ -22,6 +22,7 @@ See here: https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html#
 import matplotlib.pyplot as plt
 import numpy as np
 
+
 def line_plot(**kwargs):
     """
     Automagically takes a list of Y values (data) and figures out the X axis.
@@ -31,9 +32,10 @@ def line_plot(**kwargs):
           **kwargs lets you pass arguments into this function 
     """
     plt.plot([-1, -4.5, 16, 23])
-     
-    #plt.show()
+
+    # plt.show()
     return plt.gcf()
+
 
 def discrete_plot(**kwargs):
     """
@@ -46,8 +48,9 @@ def discrete_plot(**kwargs):
     # See formating here :
     # https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html#matplotlib.pyplot.plot
 
-    #plt.show()
+    # plt.show()
     return plt.gcf()
+
 
 def names_labels(**kwargs):
     """
@@ -66,16 +69,17 @@ def names_labels(**kwargs):
     days = range(1, 9)
     celsius_values = [25.6, 24.1, 26.7, 28.3, 27.5, 30.5, 32.8, 33.1]
 
-    fig, ax = plt.subplots() # Challenge - Why "fig" here"
+    fig, ax = plt.subplots()  # Challenge - Why "fig" here"
 
     ax.plot(days, celsius_values)
     ax.set(xlabel='Day',
-        ylabel='Temperature in Celsius',
-        title='Temperature Graph')
+           ylabel='Temperature in Celsius',
+           title='Temperature Graph')
     # See kwargs here https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.axes.html
 
-    #plt.show()
+    # plt.show()
     return plt.gcf()
+
 
 def multiple_plots(**kwargs):
     """
@@ -90,8 +94,8 @@ def multiple_plots(**kwargs):
     fig, ax = plt.subplots()
 
     ax.set(xlabel='Day',
-        ylabel='Temperature in Celsius',
-        title='Temperature Graph')
+           ylabel='Temperature in Celsius',
+           title='Temperature Graph')
 
     ax.plot(days, celsius_min)
     ax.plot(days, celsius_min, "oy")
@@ -105,6 +109,7 @@ def multiple_plots(**kwargs):
     #   days, celsius_max, "or")
     return plt.gcf()
 
+
 def bar_chart(**kwargs):
     """
     An example of a bar chart
@@ -113,10 +118,9 @@ def bar_chart(**kwargs):
           **kwargs lets you pass arguments into this function
     """
     years = [str(year) for year in range(2010, 2021)]
-    visitors = [1241, 50927, 162242, 222093, 
-                665004, 2071987, 2460407, 3799215, 
+    visitors = [1241, 50927, 162242, 222093,
+                665004, 2071987, 2460407, 3799215,
                 5399000, 5474016, 6003672]
-
 
     plt.bar(years, visitors, color="green")
 
@@ -125,8 +129,9 @@ def bar_chart(**kwargs):
     plt.title("Bar Chart Example")
 
     plt.plot()
-     
+
     return plt.gcf()
+
 
 def histogram(**kwargs):
     """
@@ -139,18 +144,19 @@ def histogram(**kwargs):
           This includes an example of how to change the plt 'title' by looking for it in **kwargs.
     """
     if kwargs['title']:
-           plt.title(kwargs['title'])
+        plt.title(kwargs['title'])
     else:
-           plt.title("Gaussian Histogram")
+        plt.title("Gaussian Histogram")
 
     gaussian_numbers = np.random.normal(size=10000)
-    
+
     plt.hist(gaussian_numbers, bins=20)
-    
+
     plt.xlabel("Value")
     plt.ylabel("Frequency")
-    #plt.show()
+    # plt.show()
     return plt.gcf()
+
 
 def scatter_plots(**kwargs):
     """
@@ -172,8 +178,9 @@ def scatter_plots(**kwargs):
     plt.scatter(x, y2, marker='v', color='r')
     plt.scatter(x, y3, marker='^', color='m')
     plt.title('Scatter Plot Example')
-    #plt.show()
+    # plt.show()
     return plt.gcf()
+
 
 def stack_plot(**kwargs):
     """
@@ -182,17 +189,17 @@ def stack_plot(**kwargs):
     Args 
           **kwargs lets you pass arguments into this function   
     """
-    idxes = [ 1,  2,  3,  4,  5,  6,  7,  8,  9]
-    y1  = [23, 42, 33, 43,  8, 44, 43, 18, 21]
-    y2  = [9, 31, 25, 14, 17, 17, 42, 22, 28]
-    y3  = [18, 29, 19, 22, 18, 16, 13, 32, 21]
-
+    idxes = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    y1 = [23, 42, 33, 43, 8, 44, 43, 18, 21]
+    y2 = [9, 31, 25, 14, 17, 17, 42, 22, 28]
+    y3 = [18, 29, 19, 22, 18, 16, 13, 32, 21]
 
     plt.stackplot(idxes, y1, y2, y3)
     plt.title('Stack Plot Example')
 
-    #plt.show()
+    # plt.show()
     return plt.gcf()
+
 
 def pie_chart1(**kwargs):
     """
@@ -211,8 +218,9 @@ def pie_chart1(**kwargs):
     ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
 
     plt.title('TIOBE Index for May 2021')
-    #plt.show()
+    # plt.show()
     return plt.gcf()
+
 
 def pie_chart2(**kwargs):
     """
@@ -224,7 +232,7 @@ def pie_chart2(**kwargs):
     """
     labels = 'C', 'Python', 'Java', 'C++', 'C#', 'others'
     sizes = [13.38, 11.87, 11.74, 7.81, 4.41]
-    sizes.append(100 - sum(sizes)) # << THIS IS THE "others". "sum(sizes)"" adds up all the items in the tuple?
+    sizes.append(100 - sum(sizes))  # << THIS IS THE "others". "sum(sizes)"" adds up all the items in the tuple?
     explode = (0, 0.1, 0, 0, 0, 0)  # only "explode" the 2nd slice (i.e. 'Python')
 
     fig1, ax1 = plt.subplots()
@@ -233,8 +241,9 @@ def pie_chart2(**kwargs):
     ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
 
     plt.title('TIOBE Index for May 2021')
-    #plt.show()
+    # plt.show()
     return plt.gcf()
+
 
 def show_figFunc(pFigureFunction, **kwargs):
     """
@@ -244,9 +253,10 @@ def show_figFunc(pFigureFunction, **kwargs):
         pFigureFunction (a function that returns a matplotlib figure)\n
         **kwargs needs to match kwargs of the function
     """
-    current_fig = fig_with_kwargs(pFigureFunction,**kwargs)
+    current_fig = fig_with_kwargs(pFigureFunction, **kwargs)
     plt.figure(current_fig.number)
     plt.show()
+
 
 def fig_with_kwargs(pFigureFunction, **kwargs):
     """
@@ -257,12 +267,13 @@ def fig_with_kwargs(pFigureFunction, **kwargs):
         **kwargs needs to match kwargs of the function
     """
     kwarg_fig = None
-    if kwargs :
+    if kwargs:
         kwarg_fig = pFigureFunction(**kwargs)
     else:
         kwarg_fig = pFigureFunction()
 
     return kwarg_fig
+
 
 if __name__ == "__main__":
     # Test scripts
