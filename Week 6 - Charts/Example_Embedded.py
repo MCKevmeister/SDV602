@@ -2,16 +2,13 @@
 Presents an example based on Demo_Matplotlib_Browser
 """
 import inspect
-
 import PySimpleGUI as sg
 import matplotlib
-
 import ChartExamples as ce
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+import matplotlib.pyplot as plt
 
 matplotlib.use('TkAgg')
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-
-import matplotlib.pyplot as plt
 
 
 def draw_figure(canvas, figure):
@@ -27,7 +24,7 @@ def delete_figure_agg(figure_agg):
 
 
 def embedded_plt(fig_dict):
-    sg.theme('LightGreen')
+    sg.theme("LightGreen")
 
     figure_w, figure_h = 650, 650
     # define the form layout
@@ -36,7 +33,7 @@ def embedded_plt(fig_dict):
         [sg.Listbox(values=listbox_values, enable_events=True, size=(28, len(listbox_values)), key='-LISTBOX-')],
         [sg.Text(' ' * 12), sg.Exit(size=(5, 2))]]
 
-    layout = [[sg.Text('Matplotlib Plot Test', font=('current 18'))],
+    layout = [[sg.Text('Matplotlib Plot Test', font='current 18')],
               [sg.Col(col_listbox, pad=(5, (3, 330))), sg.Canvas(size=(figure_w, figure_h), key='-CANVAS-'),
                sg.MLine(size=(70, 35), pad=(5, (3, 90)), key='-MULTILINE-')], ]
 
@@ -47,7 +44,8 @@ def embedded_plt(fig_dict):
     # The GUI Event Loop
     while True:
         event, values = window.read()
-        # print(event, values)                  # helps greatly when debugging
+        # print(event, values)
+        # helps greatly when debugging
         if event in (sg.WIN_CLOSED, 'Exit'):  # if user closed window or clicked Exit button
             break
         if figure_agg:
