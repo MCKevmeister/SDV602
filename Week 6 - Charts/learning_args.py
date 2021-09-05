@@ -1,7 +1,7 @@
 def add(*args):
-    global result
+    result: int = 0
     for number in args:
-        result: int = result + number
+        result = result + number
     return result
 
 
