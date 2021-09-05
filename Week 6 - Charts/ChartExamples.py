@@ -31,7 +31,7 @@ def line_plot(**kwargs):
     Args 
           **kwargs lets you pass arguments into this function 
     """
-    plt.plot([-1, -4.5, 16, 23])
+    plt.plot(kwargs['plot'])
 
     plt.show()
     return plt.gcf()
@@ -44,11 +44,10 @@ def discrete_plot(**kwargs):
     Args 
           **kwargs lets you pass arguments into this function
     """
-    plt.plot([-1, -4.5, 16, 23], "ob")
-    # See formating here :
+    plt.plot(kwargs['plot'], kwargs['fmt'])
+
     # https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html#matplotlib.pyplot.plot
 
-    # plt.show()
     return plt.gcf()
 
 
@@ -69,17 +68,14 @@ def names_labels(**kwargs):
     days = range(1, 9)
     celsius_values = [25.6, 24.1, 26.7, 28.3, 27.5, 30.5, 32.8, 33.1]
 
-    # fig,
-
-    ax = plt.subplots()  # Challenge - Why "fig" here"
+    apples, ax = plt.subplots()  # Challenge - Why "fig" here" -> because apples instead
 
     ax.plot(days, celsius_values)
-    ax.set(xlabel='Day',
-           ylabel='Temperature in Celsius',
-           title='Temperature Graph')
+    ax.set(xlabel=kwargs['xlabel'],
+           ylabel=kwargs['ylabel'],
+           title=kwargs['title'])
     # See kwargs here https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.axes.html
 
-    # plt.show()
     return plt.gcf()
 
 
@@ -95,20 +91,19 @@ def multiple_plots(**kwargs):
 
     fig, ax = plt.subplots()
 
-    ax.set(xlabel='Day',
-           ylabel='Temperature in Celsius',
-           title='Temperature Graph')
+    ax.set(xlabel=kwargs['xlabel'],
+           ylabel=kwargs['ylabel'],
+           title=kwargs['title'])
 
-    ax.plot(days, celsius_min)
-    ax.plot(days, celsius_min, "oy")
-    ax.plot(days, celsius_max)
-    ax.plot(days, celsius_max, "or")
+    # ax.plot(days, celsius_min)
+    # ax.plot(days, celsius_min, "oy")
+    # ax.plot(days, celsius_max)
+    # ax.plot(days, celsius_max, "or")
 
-    # Short hand version in one call to plot
-    # ax.plot(days, celsius_min,
-    #   days, celsius_min, "oy",
-    #   days, celsius_max,
-    #   days, celsius_max, "or")
+    ax.plot(days, celsius_min,
+            days, celsius_min, "oy",
+            days, celsius_max,
+            days, celsius_max, "or")
     return plt.gcf()
 
 
@@ -116,19 +111,15 @@ def bar_chart(**kwargs):
     """
     An example of a bar chart
 
-    Args 
+    Args
           **kwargs lets you pass arguments into this function
     """
     years = [str(year) for year in range(2010, 2021)]
-    visitors = [1241, 50927, 162242, 222093,
-                665004, 2071987, 2460407, 3799215,
-                5399000, 5474016, 6003672]
+    plt.bar(years, kwargs['visitors'], kwargs['color'])
 
-    plt.bar(years, visitors, color="green")
-
-    plt.xlabel("Years")
-    plt.ylabel("Values")
-    plt.title("Bar Chart Example")
+    plt.xlabel(kwargs['xlabel'])
+    plt.ylabel(kwargs['ylabel'])
+    plt.title(kwargs['title'])
 
     plt.plot()
 
@@ -145,18 +136,13 @@ def histogram(**kwargs):
 
           This includes an example of how to change the plt 'title' by looking for it in **kwargs.
     """
-    if kwargs['title']:
-        plt.title(kwargs['title'])
-    else:
-        plt.title("Gaussian Histogram")
 
-    gaussian_numbers = np.random.normal(size=10000)
+    plt.title(kwargs['title'])
 
-    plt.hist(gaussian_numbers, bins=20)
+    plt.hist(kwargs['gaussian_numbers'], bins=kwargs['bins'])
 
     plt.xlabel("Value")
     plt.ylabel("Frequency")
-    # plt.show()
     return plt.gcf()
 
 
@@ -168,19 +154,15 @@ def scatter_plots(**kwargs):
     Args 
           **kwargs lets you pass arguments into this function
     """
-    x = np.arange(0, 11)
-
-    y1 = np.random.randint(2, 7, (11,))
-    y2 = np.random.randint(9, 14, (11,))
-    y3 = np.random.randint(15, 25, (11,))
+    x = kwargs['x']
 
     # Markers: https://matplotlib.org/api/markers_api.html
 
-    plt.scatter(x, y1)
-    plt.scatter(x, y2, marker='v', color='r')
-    plt.scatter(x, y3, marker='^', color='m')
-    plt.title('Scatter Plot Example')
-    # plt.show()
+    plt.scatter(x, kwargs['y1'])
+    plt.scatter(x, kwargs['y2'], marker='v', color='r')
+    plt.scatter(x, kwargs['y3'], marker='^', color='m')
+    plt.title(kwargs['title'])
+
     return plt.gcf()
 
 
@@ -191,15 +173,10 @@ def stack_plot(**kwargs):
     Args 
           **kwargs lets you pass arguments into this function   
     """
-    idxes = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    y1 = [23, 42, 33, 43, 8, 44, 43, 18, 21]
-    y2 = [9, 31, 25, 14, 17, 17, 42, 22, 28]
-    y3 = [18, 29, 19, 22, 18, 16, 13, 32, 21]
 
-    plt.stackplot(idxes, y1, y2, y3)
-    plt.title('Stack Plot Example')
+    plt.stackplot(kwargs['idxes'], kwargs['y1'], kwargs['y2'], kwargs['y3'])
+    plt.title(kwargs['title'])
 
-    # plt.show()
     return plt.gcf()
 
 
