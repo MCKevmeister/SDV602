@@ -1,1 +1,1 @@
-__all__ = ["popup_calendar"]
+__all__ = ["popup_calendar", "draw_figure", "menu"]

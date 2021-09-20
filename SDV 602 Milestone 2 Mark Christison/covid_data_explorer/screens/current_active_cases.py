@@ -1,7 +1,7 @@
 import PySimpleGUI as sg
 import menu
 import elements.popup_calendar as popup_calendar
-from elements.draw_figure import draw_figure
+from elements.draw_figure import draw_figure, fig
 
 
 def current_active_cases_window():

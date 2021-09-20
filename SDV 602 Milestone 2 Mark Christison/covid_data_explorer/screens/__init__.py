@@ -4,5 +4,4 @@ __all__ = ["account_login",
            "current_active_cases",
            "current_total_cases",
            "main",
-           "total_deaths",
-           "menu"]
+           "total_deaths"]

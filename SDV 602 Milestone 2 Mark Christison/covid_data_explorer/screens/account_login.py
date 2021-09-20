@@ -12,10 +12,8 @@ def logout():
 
 
 def login_window():
-    layout = [[sg.Text('Username')],
-              [sg.In(key='-USERNAME-')],
-              [sg.Text('Password')],
-              [sg.In(key='-PASSWORD-')],
+    layout = [[sg.In('Username', key='-USERNAME-')],
+              [sg.In('Password', key='-PASSWORD-')],
               [sg.Button("OK", size=(10, 1)), sg.B("Cancel", size=(10, 1))]]
 
     window = sg.Window('Login', layout)
@@ -24,7 +22,8 @@ def login_window():
         username = "Mark"
         password = "Password"
         event, values = window.read()
-        if event == "OK" and values['-USERNAME-'] == username and password == values['-PASSWORD-']:
+        if event == "OK":
+            username = values[username]
             sg.popup("User has logged in")
             break
         if event == "OK" and values['-USERNAME-'] != username and password != values['-PASSWORD-']:
@@ -32,7 +31,3 @@ def login_window():
         if event == sg.WIN_CLOSED or "Cancel":
             break
     window.close()
-
-
-
-

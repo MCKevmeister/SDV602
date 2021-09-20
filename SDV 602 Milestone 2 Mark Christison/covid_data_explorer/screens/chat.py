@@ -2,7 +2,7 @@ import PySimpleGUI as sg
 import menu
 
 
-def send_message():
+def send_message(message):
     # TODO
     return 0
 
@@ -26,9 +26,8 @@ def chat_window():
         if event in (sg.WIN_CLOSED, 'EXIT'):
             break
         if event == 'SEND':
-            query = value['-CHAT-'].rstrip()
-            print(f'{query}', flush=True)
+            message = value['-CHAT-'].rstrip()
+            send_message(message)
+            print(f'{message}', flush=True)
         if event in menu.menu_options:
             menu.run_menu(event, window)
-
-
