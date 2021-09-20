@@ -19,7 +19,7 @@ This could be an equivalent to a Router ...
 
 """
 import sys
-from view.data_explorer_view import DES_View
+from view.data_explorer_view import des_view
 
 sys.dont_write_bytecode = True
 
@@ -28,7 +28,7 @@ if __name__ == "__main__":
     """
     Code that runs when this is the main module.
     """
-    des_obj = DES_View()
+    des_obj = des_view()
     des_main = des_obj.state_closures()
     des_main['set_up_layout']()
     des_main['render']()
