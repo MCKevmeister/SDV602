@@ -5,7 +5,7 @@ from current_active_cases import current_active_cases_window
 from total_deaths import view_total_deaths_window
 from chat import chat_window
 
-# ------ Menu Definition ------ #
+
 menu_def = [['Account', ['Login', 'Logout', 'Create Account']],
             ['Data Explorer', ['View Current Total Cases', 'View Current Active Cases', 'View Total Deaths']],
             ['Chat', ['Open Chat Window']],
