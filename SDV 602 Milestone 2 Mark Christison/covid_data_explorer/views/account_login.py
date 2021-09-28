@@ -2,16 +2,6 @@ import PySimpleGUI as sg
 from account_controller import login
 
 
-# def login(username, password):
-#     # TODO
-#     return 0
-#
-#
-# def logout():
-#     # TODO
-#     return 0
-
-
 def login_window():
     layout = [[sg.In('Username', key='-USERNAME-')],
               [sg.In('Password', key='-PASSWORD-')],
@@ -20,16 +10,14 @@ def login_window():
     window = sg.Window('Login', layout)
 
     while True:
-        username = "Mark"
-        password = "Password"
         event, values = window.read()
         if event == "OK":
-            username = values[username]
-            login()
-            sg.popup("User has logged in")
-            break
-        if event == "OK" and values['-USERNAME-'] != username and password != values['-PASSWORD-']:
-            sg.popup("Incorrect Username or Password")
+            username = values['-USERNAME-']
+            password = values['-PASSWORD-']
+            if username == "" or password == "":
+                sg.popup("Please enter a username and password")
+            else:
+                login(username, password)
         if event == sg.WIN_CLOSED or "Cancel":
             break
     window.close()
