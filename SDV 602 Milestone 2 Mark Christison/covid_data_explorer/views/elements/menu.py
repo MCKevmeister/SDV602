@@ -10,10 +10,12 @@ menu_def = [['Account', ['Login', 'Logout', 'Create Account']],
             ['Data Explorer', ['View Current Total Cases', 'View Current Active Cases', 'View Total Deaths']],
             ['Chat', ['Open Chat Window']],
             ['Quit', ['Quit']]]
+
 menu_options = ['Login', 'Logout', 'Create Account',
                 'View Current Total Cases', 'View Current Active Cases', 'View Total Deaths',
                 'Open Chat Window',
                 'Quit']
+
 TITLE = "Covid-19 Data Explorer"
 
 

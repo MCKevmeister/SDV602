@@ -1,9 +1,5 @@
 import PySimpleGUI as sg
-
-
-def create_account(username, email, password):
-    # TODO
-    return 0
+from account_controller import create_account
 
 
 def create_account_window():

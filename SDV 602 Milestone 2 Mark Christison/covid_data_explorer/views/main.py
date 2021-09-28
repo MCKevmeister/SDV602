@@ -2,7 +2,7 @@ import PySimpleGUI as sg
 import menu
 
 
-def main_screen():
+def main_view():
     sg.ChangeLookAndFeel('LightGreen')
     sg.SetOptions(element_padding=(1, 1))
 

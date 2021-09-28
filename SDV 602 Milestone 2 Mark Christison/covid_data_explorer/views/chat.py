@@ -1,6 +1,6 @@
 import PySimpleGUI as sg
 import menu
-
+import chat_controller
 
 def send_message(message):
     # TODO
@@ -13,6 +13,7 @@ def get_messages():
 
 
 def chat_window():
+    messages = get_messages()
     layout = [[sg.Menu(menu.menu_def, tearoff=False)],
               [sg.T('Welcome to the Covid19 data explorer chat.')],
               [sg.Output(size=(100, 20))],

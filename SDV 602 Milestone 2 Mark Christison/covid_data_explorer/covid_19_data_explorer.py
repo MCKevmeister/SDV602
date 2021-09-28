@@ -1,4 +1,4 @@
-from screens.main import main_screen
+from views.main import main_view
 
 if __name__ == '__main__':
-    main_screen()
+    main_view()

@@ -1,14 +1,15 @@
 import PySimpleGUI as sg
+from account_controller import login
 
 
-def login():
-    # TODO
-    return 0
-
-
-def logout():
-    # TODO
-    return 0
+# def login(username, password):
+#     # TODO
+#     return 0
+#
+#
+# def logout():
+#     # TODO
+#     return 0
 
 
 def login_window():
@@ -24,6 +25,7 @@ def login_window():
         event, values = window.read()
         if event == "OK":
             username = values[username]
+            login()
             sg.popup("User has logged in")
             break
         if event == "OK" and values['-USERNAME-'] != username and password != values['-PASSWORD-']:
