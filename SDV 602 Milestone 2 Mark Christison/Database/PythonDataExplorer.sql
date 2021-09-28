@@ -29,3 +29,32 @@ CREATE PROCEDURE makePythonDataExplorerDB()
    END//
 DELIMITER ;
 CALL makePythonDataExplorerDB();
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- Register a User
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+DROP PROCEDURE IF EXISTS RegisterUser;
+DELIMITER //
+CREATE PROCEDURE RegisterUser(username VARCHAR(255), password VARCHAR(255), email VARCHAR(255))
+BEGIN
+    DECLARE exit handler for sqlexception
+        BEGIN
+            GET DIAGNOSTICS CONDITION 1
+            @P1 = MYSQL_ERRNO, @P2 = MESSAGE_TEXT;
+            SELECT "registerUser error", @P1 AS ERROR_NUM, @P2 AS MESSAGE;
+            ROLLBACK;
+        END;
+    START TRANSACTION;
+        IF EXISTS (SELECT * FROM tblUser WHERE `username` = username) THEN
+            BEGIN
+                SELECT "Username already exists" AS `MESSAGE`;
+            END;
+        ELSE
+            BEGIN
+                INSERT INTO tblUser(`username` , `password`, `email`) VALUES (username, password, email);
+                SELECT concat(pUserName ," has been registered") AS `MESSAGE`;
+            END;
+        END IF;
+    COMMIT;
+END//
+DELIMITER ;
