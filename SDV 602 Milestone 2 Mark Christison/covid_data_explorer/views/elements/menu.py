@@ -1,9 +1,10 @@
-from account_login import login_window, logout
+from account_login import login_window
 from create_account import create_account_window
 from current_total_cases import current_total_cases_window
 from current_active_cases import current_active_cases_window
 from total_deaths import view_total_deaths_window
 from chat import chat_window
+from account_controller import logout
 
 
 menu_def = [['Account', ['Login', 'Logout', 'Create Account']],
