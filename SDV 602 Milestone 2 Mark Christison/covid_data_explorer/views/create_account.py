@@ -20,9 +20,8 @@ def create_account_window():
             username = values['-USERNAME-']
             password = values['-PASSWORD-']
             email = values['-EMAIL-']
-            create_account(username, email, password)
-            # sg.popup("User has been created")
-            # break
+            db_create_account_message = create_account(username, email, password)
+            sg.popup(db_create_account_message)
         if event == sg.WIN_CLOSED or "Cancel":
             break
     window.close()
