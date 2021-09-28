@@ -1,19 +1,9 @@
 import PySimpleGUI as sg
 import menu
-import chat_controller
-
-def send_message(message):
-    # TODO
-    return 0
-
-
-def get_messages():
-    # TODO
-    return 0
+from chat_controller import send_message, get_messages
 
 
 def chat_window():
-    messages = get_messages()
     layout = [[sg.Menu(menu.menu_def, tearoff=False)],
               [sg.T('Welcome to the Covid19 data explorer chat.')],
               [sg.Output(size=(100, 20))],
@@ -29,6 +19,7 @@ def chat_window():
         if event == 'SEND':
             message = value['-CHAT-'].rstrip()
             send_message(message)
-            print(f'{message}', flush=True)
         if event in menu.menu_options:
             menu.run_menu(event, window)
+        get
+        # TODO: use observer pattern to get messages when they have been updated in the database
