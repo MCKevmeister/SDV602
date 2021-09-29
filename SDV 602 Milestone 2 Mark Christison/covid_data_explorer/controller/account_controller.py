@@ -1,20 +1,14 @@
-import mysql.connector
+from mysql_functions import *
 
 
 def create_account(username, password, email):
     args = (username, password, email)
-
-    connection = mysql.connector.connect(option_files='my.conf')
-
-    if connection.is_connected():
-        cursor = connection.cursor()
-        return cursor.callproc('RegisterUser', args)
-    connection.close()
+    return call_mysql_stored_procedure('RegisterUser', args)
 
 
 def login(username, password):
-    # TODO
-    return 0
+    args = (username, password)
+    return call_mysql_stored_procedure('LoginUser', args)
 
 
 def logout():
