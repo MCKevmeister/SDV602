@@ -58,3 +58,29 @@ BEGIN
     COMMIT;
 END//
 DELIMITER ;
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- Send Message
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+DROP PROCEDURE IF EXISTS RegisterUser;
+DELIMITER //
+CREATE PROCEDURE SendMessage()
+BEGIN
+    DECLARE exit handler for sqlexception
+        BEGIN
+            GET DIAGNOSTICS CONDITION 1
+            @P1 = MYSQL_ERRNO, @P2 = MESSAGE_TEXT;
+            SELECT "registerUser error", @P1 AS ERROR_NUM, @P2 AS MESSAGE;
+            ROLLBACK;
+        END;
+    START TRANSACTION;
+
+    COMMIT;
+END//
+DELIMITER ;
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- Get Messages
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
