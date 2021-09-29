@@ -21,5 +21,5 @@ def chat_window():
             send_message(message)
         if event in menu.menu_options:
             menu.run_menu(event, window)
-        get
+        # get_messages()
         # TODO: use observer pattern to get messages when they have been updated in the database
