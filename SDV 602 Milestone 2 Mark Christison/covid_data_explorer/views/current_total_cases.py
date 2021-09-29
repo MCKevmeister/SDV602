@@ -21,7 +21,6 @@ def current_total_cases_window():
 
     while True:
         event, values = window.read()
-        print(event, values)
         if event in (sg.WIN_CLOSED, 'Cancel'):
             break
         if event == "Start Data":
