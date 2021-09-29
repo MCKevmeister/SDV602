@@ -5,10 +5,13 @@ from current_active_cases import current_active_cases_window
 from total_deaths import view_total_deaths_window
 from chat import chat_window
 from account_controller import logout
-
+from webbrowser import open
 
 menu_def = [['Account', ['Login', 'Logout', 'Create Account']],
-            ['Data Explorer', ['View Current Total Cases', 'View Current Active Cases', 'View Total Deaths']],
+            ['Data Explorer', ['View Current Total Cases',
+                               'View Current Active Cases',
+                               'View Total Deaths',
+                               'Source Data Link']],
             ['Chat', ['Open Chat Window']],
             ['Quit', ['Quit']]]
 
@@ -36,6 +39,8 @@ def run_menu(event, window):
     if event == 'View Total Deaths':
         window.close()
         view_total_deaths_window()
+    if event == 'Source Data Link':
+        open(r'https://github.com/owid/covid-19-data/blob/master/public/data/README.md')
     if event == 'Open Chat Window':
         window.close()
         chat_window()
