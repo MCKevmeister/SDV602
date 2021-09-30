@@ -5,10 +5,6 @@ from elements.draw_figure import draw_figure, fig
 from csv_data_reader import countries as countries_list
 
 
-# TODO manipulate data in csv for graph
-# TODO generate graph based on data in csv
-
-
 def current_active_cases_window():
     col1 = [[sg.Canvas(key='-CANVAS-')]]
 
