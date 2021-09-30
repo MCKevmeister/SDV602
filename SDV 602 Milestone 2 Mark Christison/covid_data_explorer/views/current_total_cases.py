@@ -8,7 +8,7 @@ from csv_data_reader import countries as countries_list
 def current_total_cases_window():
     col1 = [[sg.Canvas(key='-CANVAS-')]]
 
-    col2 = [[sg.Text("Choose a Country"), sg.Listbox(countries_list)],
+    col2 = [[sg.Text("Choose a Country"), sg.Combo(countries_list)],
             [sg.Button(button_text="Start Data", size=(15, 1)), sg.Button(button_text="End Data", size=(15, 1))],
             [sg.Button(button_text="Update Graph", size=(15, 1)), sg.Button(button_text="Reset Graph", size=(15, 1))]]
 
