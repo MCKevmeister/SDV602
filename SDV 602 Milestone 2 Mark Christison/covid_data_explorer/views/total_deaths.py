@@ -1,7 +1,7 @@
 import PySimpleGUI as sg
 import menu
 import elements.popup_calendar as popup_calendar
-from elements.draw_figure import draw_figure, fig
+from elements.draw_figure import draw_figure, get_fig
 from csv_data_reader import countries as countries_list
 
 
@@ -18,7 +18,9 @@ def view_total_deaths_window():
 
     window = sg.Window(menu.TITLE + ' - Current Deaths', layout, finalize=True)
 
-    draw_figure(window['-CANVAS-'].TKCanvas, fig) #TODO
+    fig = get_fig()
+
+    draw_figure(window['-CANVAS-'].TKCanvas, fig)  # TODO
 
     while True:
         event, values = window.read()

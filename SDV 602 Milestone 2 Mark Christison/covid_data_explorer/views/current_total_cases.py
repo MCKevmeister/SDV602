@@ -1,7 +1,7 @@
 import PySimpleGUI as sg
 import menu
 import elements.popup_calendar as popup_calendar
-from elements.draw_figure import draw_figure, fig
+from elements.draw_figure import draw_figure, get_fig
 from csv_data_reader import countries as countries_list
 
 
@@ -17,6 +17,8 @@ def current_total_cases_window():
               [sg.Column(col1), sg.Column(col2, element_justification='center')]]
 
     window = sg.Window(menu.TITLE + " - Current Total Cases", layout, finalize=True)
+
+    fig = get_fig()
 
     draw_figure(window['-CANVAS-'].TKCanvas, fig) # TODO
 
