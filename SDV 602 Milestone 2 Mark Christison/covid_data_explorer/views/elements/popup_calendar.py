@@ -89,10 +89,10 @@ def popup_get_date(start_mon=None, start_day=None, start_year=None, begin_at_sun
 
     update_days(window, cur_month, cur_year, begin_at_sunday_plus)
 
-    prev_choice = chosen_mon_day_year = None
+    prev_choice = chosen_year_mon_day = None
 
     if cur_day:
-        chosen_mon_day_year = cur_month, cur_day, cur_year
+        chosen_year_mon_day = cur_year, cur_month, cur_day
         for week in range(6):
             for day in range(7):
                 if window[(week, day)].DisplayText == str(cur_day):
@@ -104,7 +104,7 @@ def popup_get_date(start_mon=None, start_day=None, start_year=None, begin_at_sun
     while True:  # Event Loop
         event, values = window.read()
         if event in (sg.WIN_CLOSED, 'Cancel'):
-            chosen_mon_day_year = None
+            chosen_year_mon_day = None
             break
         if event == 'Ok':
             break
@@ -126,7 +126,7 @@ def popup_get_date(start_mon=None, start_day=None, start_year=None, begin_at_sun
                                            text_color=sg.theme_text_color())
         elif type(event) is tuple:
             if window[event].DisplayText != "":
-                chosen_mon_day_year = cur_month, int(window[event].DisplayText), cur_year
+                chosen_year_mon_day = cur_year, cur_month, int(window[event].DisplayText)
                 if prev_choice:
                     window[prev_choice].update(background_color=sg.theme_background_color(),
                                                text_color=sg.theme_text_color())
@@ -135,4 +135,5 @@ def popup_get_date(start_mon=None, start_day=None, start_year=None, begin_at_sun
                 if close_when_chosen:
                     break
     window.close()
-    return chosen_mon_day_year
+    print(chosen_year_mon_day)
+    return chosen_year_mon_day
