@@ -1,17 +1,16 @@
-from datetime import date
-
+import datetime
 import PySimpleGUI as sg
 import menu
 import elements.popup_calendar as popup_calendar
 from elements.draw_figure import draw_figure, get_fig
-from csv_data_reader import countries as countries_list
+from get_remote_data import countries as countries_list
 
 
 def current_active_cases_window():
     col1 = [[sg.Canvas(key='-CANVAS-')]]
 
     col2 = [[sg.Text("Choose a Country"), sg.Combo(countries_list, key='country_selector')],
-            [sg.Button(button_text="Start Data", size=(15, 1)), sg.Button(button_text="End Data", size=(15, 1))],
+            [sg.Button(button_text="Start Date", size=(15, 1)), sg.Button(button_text="End Date", size=(15, 1))],
             [sg.Button(button_text="Update Graph", size=(15, 1)), sg.Button(button_text="Reset Graph", size=(15, 1))]]
 
     layout = [[sg.Menu(menu.menu_def, tearoff=False)],
@@ -20,8 +19,11 @@ def current_active_cases_window():
 
     window = sg.Window(menu.TITLE + ' - Current Active Cases', layout, finalize=True)
 
-    fig = get_fig()
+    start_date = None
+    end_date = None
 
+    # fig = get_fig(get_list_dates(start_date, end_date), 2ndvalue)
+    # TODO
     draw_figure(window['-CANVAS-'].TKCanvas, fig)  # TODO
 
     while True:
@@ -29,9 +31,9 @@ def current_active_cases_window():
 
         if event in (sg.WIN_CLOSED, 'Cancel'):
             break
-        if event == "Start Data":
+        if event == "Start Date":
             start_date = popup_calendar.popup_get_date()
-        if event == "End Data":
+        if event == "End Date":
             end_date = popup_calendar.popup_get_date()
         if event in menu.menu_options:
             menu.run_menu(event, window)
