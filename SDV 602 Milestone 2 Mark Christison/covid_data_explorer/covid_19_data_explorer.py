@@ -1,8 +1,8 @@
-from data_plotter import parse_data
+from get_remote_data import get_df
 from views.main import main_view
-from csv_data_reader import get_countries
 
+global data_frame
 
 if __name__ == '__main__':
-    get_countries()
+    data_frame = get_df()
     main_view()
