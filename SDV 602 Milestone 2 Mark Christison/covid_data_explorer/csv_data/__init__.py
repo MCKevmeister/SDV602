@@ -1,1 +1,1 @@
-__all__ = ["csv_data_reader", "data_plotter"]
+__all__ = ["get_remote_data", "data_plotter"]
