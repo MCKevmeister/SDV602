@@ -8,7 +8,8 @@ from account_controller import logout
 from webbrowser import open
 
 menu_def = [['Account', ['Login', 'Logout', 'Create Account']],
-            ['Data Explorer', ['View Current Total Cases',
+            ['Data Explorer', ['Data', ['Local CSV', 'Online CSV'],
+                               'View Current Total Cases',
                                'View Current Active Cases',
                                'View Total Deaths',
                                'Source Data Link']],
@@ -30,6 +31,10 @@ def run_menu(event, window):
         logout()
     if event == 'Create Account':
         create_account_window()
+    if event == 'Local CSV':
+        get_local_csv()
+    if event == 'Online CSV':
+        get_online_csv()
     if event == 'View Current Total Cases':
         window.close()
         current_total_cases_window()
