@@ -4,9 +4,32 @@ import calendar
 import itertools
 
 
-def popup_get_date(start_mon=None, start_day=None, start_year=None, begin_at_sunday_plus=0, no_title_bar=True,
+def popup_get_date(start_mon=None, start_day=None, start_year=None, begin_at_sunday_plus=0, no_titlebar=True,
                    title='Choose Date', keep_on_top=True, location=(None, None), close_when_chosen=False, icon=None,
                    locale=None, month_names=None, day_abbreviations=None):
+    """
+    Display a calendar window, get the user's choice, return as a tuple (mon, day, year)
+
+    :param start_mon: The starting month
+    :type start_mon: int
+    :param start_day: The starting day - optional. Set to None or 0 if no date to be chosen at start
+    :type start_day: int or None
+    :param start_year: The starting year
+    :type start_year: int
+    :param begin_at_sunday_plus: Determines the left-most day in the display. 0=sunday, 1=monday, etc
+    :type begin_at_sunday_plus: int
+    :param icon: Same as Window icon parameter. Can be either a filename or Base64 value. For Windows if filename, it MUST be ICO format. For Linux, must NOT be ICO
+    :type icon: str
+    :param locale: locale used to get the day names
+    :type locale: str
+    :param month_names: optional list of month names to use (should be 12 items)
+    :type month_names: List[str]
+    :param day_abbreviations: optional list of abbreviations to display as the day of week
+    :type day_abbreviations: List[str]
+    :return: Tuple containing (month, day, year) of chosen date or None if was cancelled
+    :rtype: None or (int, int, int)
+    """
+
     if month_names is not None and len(month_names) != 12:
         sg.popup_error('Incorrect month names list specified. Must have 12 entries.', 'Your list:', month_names)
 
@@ -84,15 +107,15 @@ def popup_get_date(start_mon=None, start_day=None, start_year=None, begin_at_sun
         layout += [[sg.Button('Ok', border_width=0, font='TkFixedFont 8'),
                     sg.Button('Cancel', border_width=0, font='TkFixedFont 8')]]
 
-    window = sg.Window(title, layout, no_titlebar=no_title_bar, grab_anywhere=True, keep_on_top=keep_on_top,
+    window = sg.Window(title, layout, no_titlebar=no_titlebar, grab_anywhere=True, keep_on_top=keep_on_top,
                        font='TkFixedFont 12', use_default_focus=False, location=location, finalize=True, icon=icon)
 
     update_days(window, cur_month, cur_year, begin_at_sunday_plus)
 
-    prev_choice = chosen_year_mon_day = None
+    prev_choice = chosen_day_month_year = None
 
     if cur_day:
-        chosen_year_mon_day = cur_year, cur_month, cur_day
+        chosen_day_month_year = cur_day, cur_month, cur_year
         for week in range(6):
             for day in range(7):
                 if window[(week, day)].DisplayText == str(cur_day):
@@ -104,7 +127,7 @@ def popup_get_date(start_mon=None, start_day=None, start_year=None, begin_at_sun
     while True:  # Event Loop
         event, values = window.read()
         if event in (sg.WIN_CLOSED, 'Cancel'):
-            chosen_year_mon_day = None
+            chosen_day_month_year = None
             break
         if event == 'Ok':
             break
@@ -126,7 +149,7 @@ def popup_get_date(start_mon=None, start_day=None, start_year=None, begin_at_sun
                                            text_color=sg.theme_text_color())
         elif type(event) is tuple:
             if window[event].DisplayText != "":
-                chosen_year_mon_day = cur_year, cur_month, int(window[event].DisplayText)
+                chosen_day_month_year = int(window[event].DisplayText), cur_month, cur_year
                 if prev_choice:
                     window[prev_choice].update(background_color=sg.theme_background_color(),
                                                text_color=sg.theme_text_color())
@@ -135,5 +158,4 @@ def popup_get_date(start_mon=None, start_day=None, start_year=None, begin_at_sun
                 if close_when_chosen:
                     break
     window.close()
-    print(chosen_year_mon_day)
-    return chosen_year_mon_day
+    return chosen_day_month_year
