@@ -1,5 +1,5 @@
 import PySimpleGUI as sg
-from account_controller import create_account
+import user_manager
 
 
 def create_account_window():
@@ -8,8 +8,6 @@ def create_account_window():
               [sg.In(key='-USERNAME-')],
               [sg.Text('Password')],
               [sg.In(key='-PASSWORD-')],
-              [sg.Text('Email')],
-              [sg.In(key='-EMAIL-')],
               [sg.Button("OK", size=(10, 1)), sg.B("Cancel", size=(10, 1))]]
 
     window = sg.Window('Create Account', layout)
@@ -19,9 +17,11 @@ def create_account_window():
         if event == "OK":
             username = values['-USERNAME-']
             password = values['-PASSWORD-']
-            email = values['-EMAIL-']
-            db_create_account_message = create_account(username, email, password)
-            sg.popup(db_create_account_message)
+            user = user_manager.UserManager()
+            response = user.register(username, password)
+            sg.popup(response)
+            # register_message = register(username, password)
+            # sg.popup(register_message)
         if event == sg.WIN_CLOSED or "Cancel":
             break
     window.close()
