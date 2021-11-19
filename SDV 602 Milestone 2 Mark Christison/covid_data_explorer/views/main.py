@@ -8,8 +8,9 @@ def main_view():
 
     layout = [[sg.Menu(menu.menu_def, tearoff=False)],
               [sg.T("Welcome to the Covid-19 Data Explorer", size=(100, 3), key='-TITLE-')],
-              [sg.T('To view data, please login to continue.'), sg.B('Login')],
-              [sg.T('If you do not have an account, please create one to continue'), sg.B('Create Account')]]
+              [sg.T('To chat, please login to continue.'), sg.B('Login')],
+              [sg.T('If you do not have an account, please create one to continue'), sg.B('Create Account')],
+              [sg.T('Choose a data source to view'), sg.B('Local data'), sg.B('Remote data')]]
 
     window = sg.Window(menu.TITLE, layout)
 
