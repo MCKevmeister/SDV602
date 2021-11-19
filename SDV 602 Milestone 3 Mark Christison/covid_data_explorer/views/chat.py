@@ -1,6 +1,6 @@
 import PySimpleGUI as sg
 import menu
-import user_manager
+import chat_controller
 
 
 def chat_window():
@@ -18,8 +18,6 @@ def chat_window():
             break
         if event == 'SEND':
             message = value['-CHAT-'].rstrip()
-            user = user_manager.UserManager()
-            user.chat(message)
-            user.get_chat()
+            chat_controller.send_message(message)
         if event in menu.menu_options:
             menu.run_menu(event, window)

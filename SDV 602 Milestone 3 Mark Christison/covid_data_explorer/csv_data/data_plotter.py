@@ -49,12 +49,3 @@ def filter_data(start_date, end_date, country, data_col, df):
         dates.append(timestamp.strftime("%d-%m-%Y"))
         data.append(row[column])
     return dates, data
-
-
-if __name__ == '__main__':
-    print("starting getting data frame")
-    data_frame = get_df()
-    print("got dataframe")
-    print(filter_data('1/3/21', '2/3/21', 'New Zealand', 'total_cases', data_frame))
-    print(filter_data('2/4/21', '20/4/21', "New Zealand", 'total_vaccinations', data_frame))
-    print(filter_data('2/4/21', '20/4/21', "New Zealand", 'total_deaths', data_frame))

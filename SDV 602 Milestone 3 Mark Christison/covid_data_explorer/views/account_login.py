@@ -1,5 +1,6 @@
 import PySimpleGUI as sg
-import user_manager
+
+from account_controller import login
 
 
 def login_window():
@@ -18,8 +19,8 @@ def login_window():
                 sg.popup("Please enter a username and password")
                 login_window()
             else:
-                user = user_manager.UserManager()
-                user.login(username, password)
+                login_message = login(username, password)
+                sg.popup(login_message)
         if event == sg.WIN_CLOSED or "Cancel":
             break
     window.close()

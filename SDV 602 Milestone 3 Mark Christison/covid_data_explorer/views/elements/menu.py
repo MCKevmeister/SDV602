@@ -1,4 +1,5 @@
 import webbrowser
+from account_controller import logout
 from account_login import login_window
 from chat import chat_window
 from create_account import create_account_window
@@ -6,7 +7,6 @@ from current_total_cases import current_total_cases_window
 from get_remote_data import get_df
 from total_deaths import view_total_deaths_window
 from total_vaccinations import total_vaccinations_window
-import user_manager
 from local_csv_upload import local_csv_upload_window
 
 menu_def = [['Account', ['Login', 'Logout', 'Create Account']],
@@ -38,8 +38,7 @@ def run_menu(event, window):
     if event == 'Login':
         login_window()
     if event == 'Logout':
-        user = user_manager.UserManager()
-        user.logout()
+        logout()
     if event == 'Create Account':
         create_account_window()
     if event == 'Local CSV':
