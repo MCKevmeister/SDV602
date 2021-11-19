@@ -1,6 +1,6 @@
 import PySimpleGUI as sg
 import menu
-from chat_controller import send_message, get_messages
+import user_manager
 
 
 def chat_window():
@@ -18,8 +18,8 @@ def chat_window():
             break
         if event == 'SEND':
             message = value['-CHAT-'].rstrip()
-            send_message(message)
+            user = user_manager.UserManager()
+            user.chat(message)
+            user.get_chat()
         if event in menu.menu_options:
             menu.run_menu(event, window)
-        # get_messages()
-        # TODO: use observer pattern to get messages when they have been updated in the database
