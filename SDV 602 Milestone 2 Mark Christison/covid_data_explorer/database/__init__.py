@@ -1,1 +1,1 @@
-__all__ = ["mysql_functions"]
+__all__ = ["user_manager", "jsn_drop_service"]
