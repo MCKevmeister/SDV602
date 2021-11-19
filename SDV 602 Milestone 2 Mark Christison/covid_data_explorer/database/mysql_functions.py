@@ -1,5 +1,3 @@
-# not used as I misunderstood the verbal requirements vs the written requirements
-
 # import mysql.connector
 #
 #
