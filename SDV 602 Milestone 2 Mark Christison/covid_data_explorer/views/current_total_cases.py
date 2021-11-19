@@ -3,15 +3,17 @@ import data_plotter
 import menu
 import elements.popup_calendar as popup_calendar
 from elements.draw_figure import draw_figure, get_fig
-from get_remote_data import countries as countries_list
+from local_data import merge_data
+from shared_data import data_source, countries
 
 
 def current_total_cases_window():
     col1 = [[sg.Canvas(key='-CANVAS-')]]
 
-    col2 = [[sg.Text("Choose a Country"), sg.Combo(values=countries_list, enable_events=True, key='Country')],
+    col2 = [[sg.Text("Choose a Country"), sg.Combo(values=countries, enable_events=True, key='Country')],
             [sg.Button(button_text="Start Date", size=(15, 1), enable_events=True)],
             [sg.Button(button_text="End Date", size=(15, 1))],
+            [sg.Text("Merge data"), sg.FileBrowse(key='merge_csv')],
             [sg.Button(button_text="Update Graph", size=(15, 1))]]
 
     layout = [[sg.Menu(menu.menu_def, tearoff=False)],
@@ -27,6 +29,7 @@ def current_total_cases_window():
     while True:
         print(start_date, end_date, country)
         event, values = window.read()
+        print(event)
         if event in (sg.WIN_CLOSED, 'Cancel'):
             break
         if event == "Start Data":
@@ -39,10 +42,11 @@ def current_total_cases_window():
             menu.run_menu(event, window)
         if event == "Update Graph":
             if (country is not None) and (start_date is not None) and (end_date is not None):
-                print("inside if")
-                x, y = data_plotter.filter_data(start_date, end_date, country)
+                x, y = data_plotter.filter_data(start_date, end_date, country, 'total cases', data_source)
                 fig = get_fig(x, y)
                 draw_figure(window['-CANVAS-'].TKCanvas, fig)
             else:
                 sg.Popup("Error, enter values")
+        if event == 'Merge':
+            merge_data(values['Merge'])
     window.close()
